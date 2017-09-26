@@ -30,4 +30,8 @@ $router->post('/domains', function (Request $request) {
         'name' => $request['url'],
         'created_at' => Carbon\Carbon::now()->format('Y-m-d H:i:s')
     ]);
+
+    $id = DB::table('domains')->where('name', $request['url'])->value('id');
 });
+
+
