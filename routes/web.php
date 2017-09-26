@@ -11,6 +11,7 @@
 |
 */
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /*$router->get('/', function () use ($router) {
     return $router->app->version();
@@ -24,4 +25,12 @@ $router->get('/', function () use ($router) {
 
 $router->post('/domains', function (Request $request) {
     $this->validate($request, ['url' => 'active_url']);
+
+    DB::table('domains')->insert([
+            'name' => $request['url'],
+            'created_at' => Carbon\Carbon::now()->format('Y-m-d H:i:s')
+        ]
+    );
+
+
 });
