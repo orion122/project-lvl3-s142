@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\DB;
 
 
 $router->get('/', function () use ($router) {
-    return view('welcome');
+    return view('form');
 });
 
 
@@ -37,6 +37,7 @@ $router->post('/domains', function (Request $request) {
 });
 
 
-$router->get('/domains{id}', ['as' => 'showByID', function ($id) {
-    return $id;
+$router->get('/domains/{id}', ['as' => 'showByID', function ($id) {
+    $row = DB::table('domains')->where('id', $id)->first();
+    return view('id')->with(['row' => $row]);
 }]);
