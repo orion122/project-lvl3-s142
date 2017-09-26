@@ -32,6 +32,11 @@ $router->post('/domains', function (Request $request) {
     ]);
 
     $id = DB::table('domains')->where('name', $request['url'])->value('id');
+
+    return redirect()->route('showByID', ['id' => $id]);
 });
 
 
+$router->get('/domains{id}', ['as' => 'showByID', function ($id) {
+    return $id;
+}]);
