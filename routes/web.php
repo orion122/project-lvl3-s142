@@ -10,6 +10,7 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
+use Illuminate\Http\Request;
 
 /*$router->get('/', function () use ($router) {
     return $router->app->version();
@@ -21,6 +22,6 @@ $router->get('/', function () use ($router) {
 });
 
 
-$router->post('/domains', function () use ($router) {
-    return 'Hello World';
+$router->post('/domains', function (Request $request) {
+    $this->validate($request, ['url' => 'active_url']);
 });
