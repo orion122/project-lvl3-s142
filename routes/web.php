@@ -19,3 +19,8 @@
 $router->get('/', function () use ($router) {
     return view('welcome');
 });
+
+
+$router->post('/domains', function () use ($router) {
+    return 'Hello World';
+});

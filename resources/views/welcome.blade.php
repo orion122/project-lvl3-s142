@@ -34,16 +34,18 @@
             <div class="jumbotron">
                 <div class="container">
                 <h1>Web page Analyzer</h1>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="https://example.com">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">Go!</button>
-                                </span>
-                            </div><!-- /input-group -->
-                        </div><!-- /.col-lg-6 -->
-                    </div><!-- /.row -->
+                    <form action="/domains" method="POST">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="https://example.com">
+                                    <span class="input-group-btn">
+                                        <input class="btn btn-default" type="submit">
+                                    </span>
+                                </div><!-- /input-group -->
+                            </div><!-- /.col-lg-6 -->
+                        </div><!-- /.row -->
+                    </form>
                 </div>
             </div>
         </div>
