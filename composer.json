@@ -30,7 +30,8 @@
         "phpcs": "phpcs",
         "post-root-package-install": [
             "php -r \"copy('.env.example', '.env');\""
-        ]
+        ],
+        "post-install-cmd": ["php artisan migrate"]
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
