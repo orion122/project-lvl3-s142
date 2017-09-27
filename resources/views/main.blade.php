@@ -23,7 +23,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="{{ route('main') }}">Home<span class="sr-only">(current)</span></a></li>
-                        <li><a href="#">Domains</a></li>
+                        <li><a href="{{ route('getDomains') }}">Domains</a></li>
                     </ul>
 
                 </div>
