@@ -42,7 +42,8 @@ $router->get('/domains/{id}', ['as' => 'showByID', function ($id) {
     return view('id')->with(['row' => $row]);
 }]);
 
+
 $router->get('/domains', ['as' => 'getDomains', function () {
-    $domains = DB::table('domains')->get();
+    $domains = DB::table('domains')->simplePaginate(5);
     return view('domains')->with(['row' => $domains]);
 }]);
