@@ -31,7 +31,7 @@ $router->post('/domains', ['as' => 'postDomains', function (Request $request) {
         'created_at' => Carbon\Carbon::now()->format('Y-m-d H:i:s')
     ]);
 
-    $id = DB::table('domains')->where('name', $request['url'])->value('id');
+    $id = DB::table('domains')->latest()->first()->id;
 
     return redirect()->route('showByID', ['id' => $id]);
 }]);
