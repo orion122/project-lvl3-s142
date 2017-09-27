@@ -18,12 +18,12 @@ use Illuminate\Support\Facades\DB;
 });*/
 
 
-$router->get('/', function () use ($router) {
+$router->get('/', ['as' => 'main', function () use ($router) {
     return view('form');
-});
+}]);
 
 
-$router->post('/domains', function (Request $request) {
+$router->post('/domains', ['as' => 'postDomains', function (Request $request) {
     $this->validate($request, ['url' => 'active_url']);
 
     DB::table('domains')->insert([
@@ -34,7 +34,7 @@ $router->post('/domains', function (Request $request) {
     $id = DB::table('domains')->where('name', $request['url'])->value('id');
 
     return redirect()->route('showByID', ['id' => $id]);
-});
+}]);
 
 
 $router->get('/domains/{id}', ['as' => 'showByID', function ($id) {

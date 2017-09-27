@@ -6,7 +6,7 @@
         <div class="jumbotron">
             <div class="container">
                 <h1>Web page Analyzer</h1>
-                <form action="/domains" method="POST">
+                <form action="{{ route('postDomains') }}" method="POST">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="input-group">
