@@ -18,12 +18,12 @@ use Illuminate\Support\Facades\DB;
 });*/
 
 
-$router->get('/', ['as' => 'main', function () use ($router) {
+$router->get('/', ['as' => 'index', function () use ($router) {
     return view('form');
 }]);
 
 
-$router->post('/domains', ['as' => 'postDomains', function (Request $request) {
+$router->post('/domains', ['as' => 'store', function (Request $request) {
     $this->validate($request, ['url' => 'active_url']);
 
     DB::table('domains')->insert([
@@ -33,17 +33,17 @@ $router->post('/domains', ['as' => 'postDomains', function (Request $request) {
 
     $id = DB::table('domains')->latest()->first()->id;
 
-    return redirect()->route('showByID', ['id' => $id]);
+    return redirect()->route('id', ['id' => $id]);
 }]);
 
 
-$router->get('/domains/{id}', ['as' => 'showByID', function ($id) {
+$router->get('/domains/{id}', ['as' => 'id', function ($id) {
     $row = DB::table('domains')->where('id', $id)->first();
     return view('id')->with(['row' => $row]);
 }]);
 
 
-$router->get('/domains', ['as' => 'getDomains', function () {
+$router->get('/domains', ['as' => 'domains', function () {
     $domains = DB::table('domains')->paginate(5);
     return view('domains')->with(['row' => $domains]);
 }]);

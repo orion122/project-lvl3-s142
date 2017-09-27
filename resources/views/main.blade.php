@@ -18,12 +18,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{{ route('main') }}">Web page Analyzer</a>
+                    <a class="navbar-brand" href="{{ route('index') }}">Web page Analyzer</a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="{{ route('main') }}">Home<span class="sr-only">(current)</span></a></li>
-                        <li><a href="{{ route('getDomains') }}">Domains</a></li>
+                        <li class="active"><a href="{{ route('index') }}">Home<span class="sr-only">(current)</span></a></li>
+                        <li><a href="{{ route('domains') }}">Domains</a></li>
                     </ul>
 
                 </div>
