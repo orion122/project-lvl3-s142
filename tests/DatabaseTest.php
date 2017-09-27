@@ -1,7 +1,17 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ramazan
- * Date: 27.09.17
- * Time: 10:46
- */
+
+use Laravel\Lumen\Testing\DatabaseMigrations;
+use Laravel\Lumen\Testing\DatabaseTransactions;
+
+class DatabaseTest extends TestCase
+{
+    /**
+     * A basic test example.
+     *
+     * @return void
+     */
+    public function testDatabase()
+    {
+        $this->seeInDatabase('domains', ['name' => 'http://ya.ru']);
+    }
+}
