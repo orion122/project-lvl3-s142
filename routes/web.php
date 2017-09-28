@@ -34,7 +34,7 @@ $router->post('/domains', ['as' => 'store', function (Request $request) {
         'status_code' => $statusCode,
         'content_length' => $contentLength,
         'body' => $body,
-        'created_at' => Carbon\Carbon::now()->format('Y-m-d H:i:s')
+        'created_at' => Carbon\Carbon::now()
     ]);
 
     $id = DB::table('domains')->latest()->first()->id;
