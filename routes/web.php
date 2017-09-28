@@ -14,7 +14,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Client;
 
-
 $router->get('/', ['as' => 'index', function () use ($router) {
     return view('form');
 }]);
@@ -26,7 +25,7 @@ $router->post('/domains', ['as' => 'store', function (Request $request) {
     $client = new Client(['base_uri' => $request['url']]);
     $response = $client->request('GET');
     $contentLengthArray = $response->getHeader('Content-Length');
-    $contentLength = !empty($contentLengthArray) ? $contentLengthArray[0] : NULL;
+    $contentLength = !empty($contentLengthArray) ? $contentLengthArray[0] : null;
     $statusCode = $response->getStatusCode();
     $body = (string) $response->getBody();
 
