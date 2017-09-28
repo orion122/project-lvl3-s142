@@ -12,10 +12,7 @@
 */
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
-/*$router->get('/', function () use ($router) {
-    return $router->app->version();
-});*/
+use GuzzleHttp\Client;
 
 
 $router->get('/', ['as' => 'index', function () use ($router) {
@@ -26,8 +23,18 @@ $router->get('/', ['as' => 'index', function () use ($router) {
 $router->post('/domains', ['as' => 'store', function (Request $request) {
     $this->validate($request, ['url' => 'active_url']);
 
+    $client = new Client(['base_uri' => $request['url']]);
+    $response = $client->request('GET');
+    $contentLengthArray = $response->getHeader('Content-Length');
+    $contentLength = !empty($contentLengthArray) ? $contentLengthArray[0] : NULL;
+    $statusCode = $response->getStatusCode();
+    $body = (string) $response->getBody();
+
     DB::table('domains')->insert([
         'name' => $request['url'],
+        'status_code' => $statusCode,
+        'content_length' => $contentLength,
+        'body' => $body,
         'created_at' => Carbon\Carbon::now()->format('Y-m-d H:i:s')
     ]);
 

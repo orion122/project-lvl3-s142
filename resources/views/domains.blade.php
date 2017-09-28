@@ -6,9 +6,11 @@
         <thead>
         <tr>
             <th>#</th>
-            <th>url</th>
-            <th>created_at</th>
-            <th>updated_at</th>
+            <th>URL</th>
+            <th>Status Code</th>
+            <th>Content Length</th>
+            <th>Created At</th>
+            <th>Updated At</th>
         </tr>
         </thead>
         <tbody>
@@ -16,6 +18,8 @@
                     <tr>
                         <td>{{ $item->id }}</td>
                         <td><a href="{{ $item->name }}">{{ $item->name }}</a></td>
+                        <td>{{ $item->status_code }}</td>
+                        <td>{{ $item->content_length }}</td>
                         <td>{{ $item->created_at }}</td>
                         <td>{{ $item->updated_at }}</td>
                     </tr>
