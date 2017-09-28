@@ -29,15 +29,13 @@ $router->post('/domains', ['as' => 'store', function (Request $request) {
     $statusCode = $response->getStatusCode();
     $body = (string) $response->getBody();
 
-    DB::table('domains')->insert([
+    $id = DB::table('domains')->insertGetId([
         'name' => $request['url'],
         'status_code' => $statusCode,
         'content_length' => $contentLength,
         'body' => $body,
         'created_at' => Carbon\Carbon::now()
     ]);
-
-    $id = DB::table('domains')->latest()->first()->id;
 
     return redirect()->route('id', ['id' => $id]);
 }]);
