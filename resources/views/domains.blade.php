@@ -15,7 +15,7 @@
             @foreach($row as $item)
                     <tr>
                         <td>{{ $item->id }}</td>
-                        <td>{{ $item->name }}</td>
+                        <td><a href="{{ $item->name }}">{{ $item->name }}</a></td>
                         <td>{{ $item->created_at }}</td>
                         <td>{{ $item->updated_at }}</td>
                     </tr>
