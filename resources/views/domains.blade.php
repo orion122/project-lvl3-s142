@@ -1,7 +1,7 @@
 @extends('main')
 
 @section('content')
-    <div class="pagination">{{ $row->links() }}</div>
+    <div class="text-center">{{ $row->links() }}</div>
     <table class="table">
         <thead>
         <tr>
