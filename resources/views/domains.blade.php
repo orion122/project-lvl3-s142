@@ -17,7 +17,7 @@
             @foreach($row as $item)
                     <tr>
                         <td>{{ $item->id }}</td>
-                        <td><a href="{{ $item->name }}">{{ $item->name }}</a></td>
+                        <td><a href="domains/{{ $item->id }}">{{ $item->name }}</a></td>
                         <td>{{ $item->status_code }}</td>
                         <td>{{ $item->content_length }}</td>
                         <td>{{ $item->created_at }}</td>
