@@ -37,11 +37,11 @@ $router->post('/domains', ['as' => 'store', function (Request $request) {
         'created_at' => Carbon\Carbon::now()
     ]);
 
-    return redirect()->route('id', ['id' => $id]);
+    return redirect()->route('show', ['id' => $id]);
 }]);
 
 
-$router->get('/domains/{id}', ['as' => 'id', function ($id) {
+$router->get('/domains/{id}', ['as' => 'show', function ($id) {
     $row = DB::table('domains')->where('id', $id)->first();
     return view('id')->with(['row' => $row]);
 }]);
