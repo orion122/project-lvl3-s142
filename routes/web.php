@@ -29,11 +29,22 @@ $router->post('/domains', ['as' => 'store', function (Request $request) {
     $statusCode = $response->getStatusCode();
     $body = (string) $response->getBody();
 
+    $hasH1 = preg_match('/<h1.*>(.+)<\/h1>/U', $body, $tagH1);
+    $hasMetaKeywords = preg_match('/<meta name="keywords" (.+)="/U', $body, $tagMetaKeywords);
+    $hasMetaContent = preg_match('/<meta.+content="(.+)".*>/U', $body, $tagMetaContent);
+
+    $h1 = $hasH1 ? $tagH1[1] : null;
+    $metaKeywords = $hasMetaKeywords ? $tagMetaKeywords[1] : null;
+    $metaContent = $hasMetaContent ? $tagMetaContent[1] : null;
+
     $id = DB::table('domains')->insertGetId([
         'name' => $request['url'],
         'status_code' => $statusCode,
         'content_length' => $contentLength,
         'body' => $body,
+        'h1' => $h1,
+        'meta_keywords' => $metaKeywords,
+        'meta_content' => $metaContent,
         'created_at' => Carbon\Carbon::now()
     ]);
 
