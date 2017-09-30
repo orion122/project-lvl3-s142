@@ -1,25 +1,36 @@
 <?php
 
-use Laravel\Lumen\Testing\DatabaseMigrations;
-use Laravel\Lumen\Testing\DatabaseTransactions;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
 
-class DatabaseTest extends TestCase
+class DomainsTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function testDatabase()
+    public function setUp()
     {
+        putenv('DB_CONNECTION=testing');
+        parent::setUp();
+        Artisan::call('migrate');
+    }
+
+    public function tearDown()
+    {
+        Artisan::call('migrate:reset');
+        parent::tearDown();
+    }
+
+
+    public function testApplication()
+    {
+        DB::table('domains')->insert([
+            'name' => 'http://ya.ru',
+            'status_code' => '200',
+            'body' => 'body'
+        ]);
+
         $this->seeInDatabase('domains', [
                 'id' => '1',
                 'name' => 'http://ya.ru',
-                'status_code' => '200',
-                'content_length' => '10472',
-                'created_at' => '2017-09-28 09:39:54',
-                'updated_at' => null
-            ]
-        );
+                'status_code' => '200'
+            ]);
     }
 }

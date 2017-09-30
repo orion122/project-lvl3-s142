@@ -28,9 +28,7 @@ class AddCeoToDomainsTable extends Migration
     public function down()
     {
         Schema::table('domains', function (Blueprint $table) {
-            $table->dropColumn('h1');
-            $table->dropColumn('meta_keywords');
-            $table->dropColumn('meta_content');
+            $table->dropColumn(['h1', 'meta_keywords', 'meta_content']);
         });
     }
 }

@@ -14,9 +14,6 @@ class MainPageTest extends TestCase
     {
         $this->get('/');
 
-        /*$this->assertEquals(
-            $this->response->getContent(), $this->response->getContent()
-        );*/
         $this->assertResponseOk();
     }
 }
