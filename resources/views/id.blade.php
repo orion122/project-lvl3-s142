@@ -10,8 +10,8 @@
             <th>Status Code</th>
             <th>Content Length</th>
             <th>h1</th>
-            <th>Meta Keywords</th>
-            <th>Meta Content</th>
+            <th>Keywords</th>
+            <th>Description</th>
             <th>Created At</th>
             <th>Updated At</th>
         </tr>

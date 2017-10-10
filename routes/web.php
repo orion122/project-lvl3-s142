@@ -30,12 +30,12 @@ $router->post('/domains', ['as' => 'store', function (Request $request) {
     $body = (string) $response->getBody();
 
     $hasH1 = preg_match('/<h1.*>(.+)<\/h1>/U', $body, $tagH1);
-    $hasMetaKeywords = preg_match('/<meta name="keywords" (.+)="/U', $body, $tagMetaKeywords);
-    $hasMetaContent = preg_match('/<meta.+content="(.+)".*>/U', $body, $tagMetaContent);
+    $hasMetaKeywords = preg_match('/<meta.+name="keywords".+content="(.+)".*>/U', $body, $tagMetaKeywords);
+    $hasMetaDescription = preg_match('/<meta.+name="description".+content="(.+)".*>/U', $body, $tagMetaContent);
 
     $h1 = $hasH1 ? $tagH1[1] : null;
     $metaKeywords = $hasMetaKeywords ? $tagMetaKeywords[1] : null;
-    $metaContent = $hasMetaContent ? $tagMetaContent[1] : null;
+    $metaDescription = $hasMetaDescription ? $tagMetaContent[1] : null;
 
     $id = DB::table('domains')->insertGetId([
         'name' => $request['url'],
@@ -44,7 +44,7 @@ $router->post('/domains', ['as' => 'store', function (Request $request) {
         'body' => $body,
         'h1' => $h1,
         'meta_keywords' => $metaKeywords,
-        'meta_content' => $metaContent,
+        'meta_content' => $metaDescription,
         'created_at' => Carbon\Carbon::now()
     ]);
 
