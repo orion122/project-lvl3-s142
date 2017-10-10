@@ -7,7 +7,6 @@ class DomainsTest extends TestCase
 {
     public function setUp()
     {
-        putenv('DB_CONNECTION=testing');
         parent::setUp();
         Artisan::call('migrate');
     }
@@ -21,16 +20,21 @@ class DomainsTest extends TestCase
 
     public function testApplication()
     {
-        DB::table('domains')->insert([
-            'name' => 'http://ya.ru',
-            'status_code' => '200',
-            'body' => 'body'
+        $url = 'http://ya.ru';
+        $statusCode = '200';
+        $contentLength = '1';
+        $body = 'a';
+        $time = Carbon\Carbon::now();
+
+        DB::table('domains')->insertGetId([
+            'name' => $url,
+            'status_code' => $statusCode,
+            'content_length' => $contentLength,
+            'body' => $body,
+            'created_at' => $time
         ]);
 
-        $this->seeInDatabase('domains', [
-                'id' => '1',
-                'name' => 'http://ya.ru',
-                'status_code' => '200'
-            ]);
+        $this->get("/domains");
+        $this->assertResponseOk();
     }
 }
